@@ -22,6 +22,5 @@ public class SaveLoad : MonoBehaviour
             bestScore = 0;
         }
         return bestScore;
-
     }
 }

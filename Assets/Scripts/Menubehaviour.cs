@@ -23,19 +23,23 @@ public class Menubehaviour : MonoBehaviour
         spawner.speed = 0.5f;
         playGame = false;
         bestScore = saveLoad.loadBest();
+        startGameMenu.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = bestScore.ToString();
     }
 
     public void gameOver()
     {
-        spawner.speed = 0.5f;
-        gameOverMenu.SetActive(true);
-        gameMenu.SetActive(false);
-        gameOverMenu.transform.GetChild(0).GetChild(3).GetComponent<Text>().text = toucher.score.ToString();
-        if (bestScore < toucher.score)
+        if (playGame)
         {
-            saveLoad.saveBest(toucher.score);
+            spawner.speed = 0.5f;
+            gameOverMenu.SetActive(true);
+            gameMenu.SetActive(false);
+            gameOverMenu.transform.GetChild(0).GetChild(3).GetComponent<Text>().text = toucher.score.ToString();
+            if (bestScore < toucher.score)
+            {
+                saveLoad.saveBest(toucher.score);
+            }
+            playGame = false;
         }
-        playGame = false;
     }
 
     public void startNewGame()
